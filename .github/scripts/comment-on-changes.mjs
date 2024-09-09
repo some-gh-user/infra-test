@@ -13,6 +13,7 @@ const octokit = new Octokit({
 const IDENTIFIER = "<!-- CH_ACTION -->"
 
 // find all comments
+console.log("listing comments")
 const { data: comments } = await octokit.issues.listComments({
   owner,
   repo,
@@ -25,6 +26,7 @@ const prevComment = comments.find((comment) =>
 
 async function getBody() {
   // find changed files
+  console.log("listing files")
   let changedFiles = await octokit.pulls.listFiles({
     ...repo,
     pull_number: prNumber,
@@ -39,6 +41,7 @@ async function getBody() {
   const hasChangesets = !!changeset
 
   if (!hasChangesets) {
+    console.log("getting PR")
     const pr = await octokit.pulls.get({
       owner,
       repo,
@@ -75,6 +78,7 @@ async function createComment() {
 
     if (prevComment) {
       // Update the comment if it already exists
+      console.log("updating comment")
       await octokit.issues.updateComment({
         owner,
         repo,
@@ -86,6 +90,7 @@ async function createComment() {
     }
 
     // Create a comment on the pull request
+    console.log("creating comment")
     await octokit.issues.createComment({
       owner,
       repo,
