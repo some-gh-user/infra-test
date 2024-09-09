@@ -5,8 +5,15 @@ on:
     branches:
       - next
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   pr-canary:
+    if: >
+      contains(github.event.pull_request.labels.*.name, 'release') == false
+
     runs-on: ubuntu-latest
 
     permissions:
@@ -35,7 +42,7 @@ jobs:
       - run: pnpm canary
 
       - name: Add or update PR comment
-        run: node .github/scripts/comment-on-changes.mjs ${{ github.event.pull_request.number }}
+        run: node .github/scripts/pr-updated.mjs ${{ github.event.pull_request.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
