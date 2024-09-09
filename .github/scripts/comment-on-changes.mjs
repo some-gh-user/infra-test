@@ -1,5 +1,6 @@
 import { Octokit } from "@octokit/action"
 import { humanId } from "human-id"
+import fs from "fs"
 
 // Get the required environment variables (PR number and GitHub token)
 const prNumber = process.argv[2]
@@ -64,6 +65,9 @@ ${pr.data.title}
 No changesets found. [Add a changeset](${addChangesetURL})
 `
   }
+
+  const canary = await fs.promises.readFile("canary.json", "utf8")
+  console.log("canary", canary)
 
   return `${IDENTIFIER}
 Changesets found. 

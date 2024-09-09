@@ -28,11 +28,11 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      - name: Install dependencies
-        run: pnpm install
+      - run: pnpm install
 
-      - name: Build
-        run: pnpm build
+      - run: pnpm build
+
+      - run: pnpm canary
 
       - name: Add or update PR comment
         run: node .github/scripts/comment-on-changes.mjs ${{ github.event.pull_request.number }}
