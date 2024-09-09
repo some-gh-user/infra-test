@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/action"
-import humanId from "human-id"
+import { humanId } from "human-id"
 
 // Get the required environment variables (PR number and GitHub token)
 const prNumber = process.argv[2]
