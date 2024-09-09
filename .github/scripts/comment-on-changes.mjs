@@ -15,7 +15,7 @@ const IDENTIFIER = "<!-- POMBOT_IDENTIFIER -->"
 const { data: comments } = await octokit.issues.listComments({
   owner,
   repo,
-  issue_number,
+  issue_number: prNumber,
 })
 
 const prevComment = comments.find((comment) =>
