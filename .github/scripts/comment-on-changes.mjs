@@ -62,9 +62,12 @@ async function getBody() {
 
 ${pr.data.title}
 `)
-    const addChangesetURL = `https://github.com/${owner}/${repo}/new/${pr.data.head.ref}?filename=.changeset/${filename}.md&value=${value}`
+    const repoURL = pr.data.head.repo.html_url
+    const addChangesetURL = `${repoURL}/new/${pr.data.head.ref}?filename=.changeset/${filename}.md&value=${value}`
     return `${IDENTIFIER}
-No changesets found. [Add a changeset](${addChangesetURL})
+No changeset detected. If you are changing ${
+      "`" + packageName + "`"
+    } [click here to add a changeset](${addChangesetURL}).
 `
   }
 
