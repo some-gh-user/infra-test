@@ -17,3 +17,7 @@ For every merged PR to `next`:
 ```
 - go to fixed issues and add comments
 ```
+
+## sponsors
+
+## release

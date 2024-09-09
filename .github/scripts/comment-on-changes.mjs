@@ -75,10 +75,10 @@ No changesets found. [Add a changeset](${addChangesetURL})
   const { name, url } = packages[0]
 
   return `${IDENTIFIER}
-Install the version from this pull request in your project with: 
+Try ${"`" + name + "`"} from this pull request in your project with: 
 
 ${"```"}
-npm i ${url}
+npm i https://pkg.pr.new/${name}@${prNumber}
 ${"```"}
 `
 }
