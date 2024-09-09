@@ -90,7 +90,8 @@ async function createComment() {
     }
 
     // Create a comment on the pull request
-    console.log("creating comment")
+    console.log("creating comment", owner, repo, prNumber)
+    console.log({ body })
     await octokit.issues.createComment({
       owner,
       repo,
