@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/action"
+import humanId from "human-id"
 
 // Get the required environment variables (PR number and GitHub token)
 const prNumber = process.argv[2]
@@ -9,7 +10,7 @@ const octokit = new Octokit({
   // auth: token,
 })
 
-const IDENTIFIER = "<!-- POMBOT_IDENTIFIER -->"
+const IDENTIFIER = "<!-- CH_ACTION -->"
 
 // find all comments
 const { data: comments } = await octokit.issues.listComments({
@@ -22,11 +23,50 @@ const prevComment = comments.find((comment) =>
   comment.body.startsWith(IDENTIFIER),
 )
 
+async function getBody() {
+  // find changed files
+  let changedFiles = await octokit.pulls.listFiles({
+    ...repo,
+    pull_number: prNumber,
+  })
+  const changeset = changedFiles.data.find(
+    (file) =>
+      file.status === "added" &&
+      /^\.changeset\/.+\.md$/.test(file.filename) &&
+      file.filename !== ".changeset/README.md",
+  )
+
+  const hasChangesets = !!changeset
+
+  if (!hasChangesets) {
+    const pr = await octokit.pulls.get({
+      owner,
+      repo,
+      pull_number: prNumber,
+    })
+    const filename = humanId({
+      separator: "-",
+      capitalize: false,
+    })
+    const value = "value"
+    const addChangesetURL = `${pr.data.html_url}/new/${pr.data.head.ref}?filename=.changeset/${filename}.md&value=${value}`
+    return `${IDENTIFIER}
+No changesets found. [Add a changeset](${addChangesetURL})
+`
+  }
+
+  return `${IDENTIFIER}
+Changesets found. 
+
+${"```json"}
+${JSON.stringify(changeset, null, 2)}
+${"```"}
+`
+}
+
 async function createComment() {
   try {
-    const body = `${IDENTIFIER}
-TODO find changesets ${Date.now()}
-`
+    const body = await getBody()
 
     if (prevComment) {
       // Update the comment if it already exists
