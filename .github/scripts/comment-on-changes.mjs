@@ -103,6 +103,7 @@ async function createComment() {
     console.log(`Comment created on PR #${prNumber}`)
   } catch (error) {
     console.error(`Failed: ${error.message}`)
+    process.exit(1)
   }
 }
 
