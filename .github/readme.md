@@ -7,6 +7,7 @@ For every new commit in a PR to `next` (that isn't tagged with `release`):
 - if no new changeset
   - comment with a link to add a changeset
 - if new changeset
+  - add `changeset` label
   - show it with pkg.pr.new
 ```
 

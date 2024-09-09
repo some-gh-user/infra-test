@@ -152,6 +152,6 @@ const query = `query ($repoOwner: String!, $repoName: String!, $prNumber: Int!) 
 const result = await octokit.graphql(query, {
   repoOwner: owner,
   repoName: repo,
-  prNumber: prNumber,
+  prNumber: Number(prNumber),
 })
 console.log(JSON.stringify(result, null, 2))
