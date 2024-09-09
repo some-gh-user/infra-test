@@ -1,12 +1,16 @@
-name: Comment PR
+name: PR Merged
 
 on:
   pull_request:
+    types: [closed]
     branches:
       - next
 
 jobs:
-  run-js:
+  issue-canary:
+    if: >
+      github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'changeset')
+
     runs-on: ubuntu-latest
 
     permissions:
@@ -30,12 +34,8 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm build
-
-      - run: pnpm canary
-
-      - name: Add or update PR comment
-        run: node .github/scripts/comment-on-changes.mjs ${{ github.event.pull_request.number }}
+      - name: Add comment to issues
+        run: node .github/scripts/pr-merged.mjs ${{ github.event.pull_request.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}

@@ -1,4 +1,4 @@
-name: Comment PR
+name: PR Updated
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - next
 
 jobs:
-  run-js:
+  pr-canary:
     runs-on: ubuntu-latest
 
     permissions:

@@ -9,9 +9,7 @@ const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/")
 
 const packageName = repo
 
-const octokit = new Octokit({
-  // auth: token,
-})
+const octokit = new Octokit({})
 
 const IDENTIFIER = "<!-- CH_ACTION -->"
 
@@ -133,25 +131,3 @@ async function createComment() {
 
 // Run the function
 await createComment()
-
-// test pr graphql
-
-const query = `query ($repoOwner: String!, $repoName: String!, $prNumber: Int!) {
-  repository(owner: $repoOwner, name: $repoName) {
-    pullRequest(number: $prNumber) {
-      title
-      state
-      closingIssuesReferences(first: 10) {
-        nodes {
-          number
-        }
-      }
-    }
-  }
-}`
-const result = await octokit.graphql(query, {
-  repoOwner: owner,
-  repoName: repo,
-  prNumber: Number(prNumber),
-})
-console.log(JSON.stringify(result, null, 2))
