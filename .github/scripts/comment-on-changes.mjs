@@ -48,7 +48,12 @@ async function getBody() {
       separator: "-",
       capitalize: false,
     })
-    const value = "value"
+    const value = encodeURIComponent(`---
+"${repo}": patch
+---
+
+${pr.data.title}
+`)
     const addChangesetURL = `${pr.data.html_url}/new/${pr.data.head.ref}?filename=.changeset/${filename}.md&value=${value}`
     return `${IDENTIFIER}
 No changesets found. [Add a changeset](${addChangesetURL})

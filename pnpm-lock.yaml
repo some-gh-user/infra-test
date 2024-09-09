@@ -20,6 +20,9 @@ importers:
       '@octokit/rest':
         specifier: 21.0.2
         version: 21.0.2
+      human-id:
+        specifier: 4.1.1
+        version: 4.1.1
       pkg-pr-new:
         specifier: 0.0.24
         version: 0.0.24
@@ -2633,6 +2636,10 @@ packages:
 
   human-id@1.0.2:
     resolution: {integrity: sha512-UNopramDEhHJD+VR+ehk8rOslwSfByxPIZyJRfV739NDhN5LF1fa1MqnzKm2lGTQRjNrjK19Q5fhkgIfjlVUKw==}
+
+  human-id@4.1.1:
+    resolution: {integrity: sha512-3gKm/gCSUipeLsRYZbbdA1BD83lBoWUkZ7G9VFrhWPAU76KwYo5KR8V28bpoPm/ygy0x5/GCbpRQdY7VLYCoIg==}
+    hasBin: true
 
   human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
@@ -7142,6 +7149,8 @@ snapshots:
   hosted-git-info@2.8.9: {}
 
   human-id@1.0.2: {}
+
+  human-id@4.1.1: {}
 
   human-signals@5.0.0: {}
 
