@@ -14,9 +14,15 @@ importers:
       '@changesets/cli':
         specifier: 2.27.1
         version: 2.27.1
+      '@octokit/action':
+        specifier: 7.0.0
+        version: 7.0.0
       '@octokit/rest':
         specifier: 21.0.2
         version: 21.0.2
+      human-id:
+        specifier: 4.1.1
+        version: 4.1.1
       pkg-pr-new:
         specifier: 0.0.24
         version: 0.0.24
@@ -717,8 +723,16 @@ packages:
     resolution: {integrity: sha512-lo+nHx8kAV86bxvOVOI3vFjX3gXPd/L7guAUbvs3pUvnR2KC+R7yjBkA1uACt4gYhs4LcWP3AXSGQzsbeN2XXw==}
     engines: {node: '>= 18'}
 
+  '@octokit/action@7.0.0':
+    resolution: {integrity: sha512-YVstbUS7vbW0frVGAGtYpSqjbgCwQW1OO0WS+sc/fx0RnW0PP4kPgMCmkgkLAm51WyYTWOOQRA1HuaGTSFgyfQ==}
+    engines: {node: '>= 18'}
+
   '@octokit/auth-action@4.1.0':
     resolution: {integrity: sha512-m+3t7K46IYyMk7Bl6/lF4Rv09GqDZjYmNg8IWycJ2Fa3YE3DE7vQcV6G2hUPmR9NDqenefNJwVtlisMjzymPiQ==}
+    engines: {node: '>= 18'}
+
+  '@octokit/auth-action@5.1.1':
+    resolution: {integrity: sha512-JE2gbAZcwwVuww88YY7oB97P6eVAPgKZk2US9Uyz+ZUw5ubeRkZqog7G/gUEAjayIFt8s0UX3qNntP1agVcB0g==}
     engines: {node: '>= 18'}
 
   '@octokit/auth-token@4.0.0':
@@ -2622,6 +2636,10 @@ packages:
 
   human-id@1.0.2:
     resolution: {integrity: sha512-UNopramDEhHJD+VR+ehk8rOslwSfByxPIZyJRfV739NDhN5LF1fa1MqnzKm2lGTQRjNrjK19Q5fhkgIfjlVUKw==}
+
+  human-id@4.1.1:
+    resolution: {integrity: sha512-3gKm/gCSUipeLsRYZbbdA1BD83lBoWUkZ7G9VFrhWPAU76KwYo5KR8V28bpoPm/ygy0x5/GCbpRQdY7VLYCoIg==}
+    hasBin: true
 
   human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
@@ -4991,9 +5009,23 @@ snapshots:
       '@octokit/types': 12.6.0
       undici: 6.19.8
 
+  '@octokit/action@7.0.0':
+    dependencies:
+      '@octokit/auth-action': 5.1.1
+      '@octokit/core': 6.1.2
+      '@octokit/plugin-paginate-rest': 11.3.3(@octokit/core@6.1.2)
+      '@octokit/plugin-rest-endpoint-methods': 13.2.4(@octokit/core@6.1.2)
+      '@octokit/types': 13.5.0
+      undici: 6.19.8
+
   '@octokit/auth-action@4.1.0':
     dependencies:
       '@octokit/auth-token': 4.0.0
+      '@octokit/types': 13.5.0
+
+  '@octokit/auth-action@5.1.1':
+    dependencies:
+      '@octokit/auth-token': 5.1.1
       '@octokit/types': 13.5.0
 
   '@octokit/auth-token@4.0.0': {}
@@ -7117,6 +7149,8 @@ snapshots:
   hosted-git-info@2.8.9: {}
 
   human-id@1.0.2: {}
+
+  human-id@4.1.1: {}
 
   human-signals@5.0.0: {}
 
