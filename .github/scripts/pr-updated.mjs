@@ -7,7 +7,7 @@ const prNumber = process.argv[2]
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/")
 // const token = process.env.GITHUB_TOKEN
 
-const packageName = repo
+const packageName = "ch-test-infra"
 
 const octokit = new Octokit({})
 

@@ -3,7 +3,7 @@ import { Octokit } from "@octokit/action"
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/")
 const prNumber = process.argv[2]
 const octokit = new Octokit({})
-const packageName = repo
+const packageName = "ch-test-infra"
 
 const query = `query ($repoOwner: String!, $repoName: String!, $prNumber: Int!) {
   repository(owner: $repoOwner, name: $repoName) {
