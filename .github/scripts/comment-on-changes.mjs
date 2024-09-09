@@ -1,13 +1,12 @@
-import { Octokit } from "@octokit/rest"
+import { Octokit } from "@octokit/action"
 
 // Get the required environment variables (PR number and GitHub token)
 const prNumber = process.argv[2]
 const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY.split("/")
-const token = process.env.GITHUB_TOKEN
+// const token = process.env.GITHUB_TOKEN
 
-// Initialize Octokit with the token
 const octokit = new Octokit({
-  auth: token,
+  // auth: token,
 })
 
 async function createComment() {
