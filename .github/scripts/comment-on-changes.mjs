@@ -28,7 +28,8 @@ async function getBody() {
   // find changed files
   console.log("listing files")
   let changedFiles = await octokit.pulls.listFiles({
-    ...repo,
+    owner,
+    repo,
     pull_number: prNumber,
   })
   const changeset = changedFiles.data.find(
@@ -39,6 +40,7 @@ async function getBody() {
   )
 
   const hasChangesets = !!changeset
+  console.log({ hasChangesets })
 
   if (!hasChangesets) {
     console.log("getting PR")
@@ -100,7 +102,7 @@ async function createComment() {
     })
     console.log(`Comment created on PR #${prNumber}`)
   } catch (error) {
-    console.error(`Failed to create comment: ${error.message}`)
+    console.error(`Failed: ${error.message}`)
   }
 }
 
