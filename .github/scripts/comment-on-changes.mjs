@@ -52,6 +52,7 @@ async function getBody() {
       repo,
       pull_number: prNumber,
     })
+
     const filename = humanId({
       separator: "-",
       capitalize: false,
@@ -70,6 +71,17 @@ No changeset detected. If you are changing ${
     } [click here to add a changeset](${addChangesetURL}).
 `
   }
+
+  // if has changesets
+
+  // add label if doesn't exist
+
+  await octokit.issues.addLabels({
+    owner,
+    repo,
+    issue_number: prNumber,
+    labels: ["changeset"],
+  })
 
   const canary = await fs.promises.readFile("canary.json", "utf8")
   console.log("canary", canary)
@@ -121,3 +133,25 @@ async function createComment() {
 
 // Run the function
 await createComment()
+
+// test pr graphql
+
+const query = `query ($repoOwner: String!, $repoName: String!, $prNumber: Int!) {
+  repository(owner: $repoOwner, name: $repoName) {
+    pullRequest(number: $prNumber) {
+      title
+      state
+      closingIssuesReferences(first: 10) {
+        nodes {
+          number
+        }
+      }
+    }
+  }
+}`
+const result = await octokit.graphql(query, {
+  repoOwner: owner,
+  repoName: repo,
+  prNumber: prNumber,
+})
+console.log(JSON.stringify(result, null, 2))

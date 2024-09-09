@@ -1,6 +1,6 @@
 ## pr-updated
 
-For every new commit in a PR to `next`:
+For every new commit in a PR to `next` (that isn't tagged with `release`):
 
 ```
 - build and test package
@@ -15,9 +15,26 @@ For every new commit in a PR to `next`:
 For every merged PR to `next`:
 
 ```
-- go to fixed issues and add comments
+- if has changesets
+  - go to fixed issues and add canary comment
 ```
 
 ## sponsors
 
 ## release
+
+```
+for every push to `next`,
+  - run `pnpm version-packages`
+  - if no changes, skip
+  - if there's old release PR delete it
+  - create a new release PR
+    - title: `release: v${version}`
+    - body: changelog
+    - labels: `release`
+
+for every `release` PR merged:
+  - run `pnpm release`
+  - github release
+  - add comments to fixed issues
+```
