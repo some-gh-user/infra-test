@@ -9,7 +9,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish",
-    "canary": "pkg-pr-new publish --json=canary.json --comment=off './packages/ch-test-infra'"
+    "canary": "pkg-pr-new publish --json=canary.json --comment=off --compact './packages/ch-test-infra'"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.1",

@@ -7,6 +7,8 @@ const prNumber = process.argv[2]
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/")
 // const token = process.env.GITHUB_TOKEN
 
+const packageName = repo
+
 const octokit = new Octokit({
   // auth: token,
 })
@@ -55,7 +57,7 @@ async function getBody() {
       capitalize: false,
     })
     const value = encodeURIComponent(`---
-"${repo}": patch
+"${packageName}": patch
 ---
 
 ${pr.data.title}
@@ -69,11 +71,14 @@ No changesets found. [Add a changeset](${addChangesetURL})
   const canary = await fs.promises.readFile("canary.json", "utf8")
   console.log("canary", canary)
 
-  return `${IDENTIFIER}
-Changesets found. 
+  const { packages } = JSON.parse(canary)
+  const { name, url } = packages[0]
 
-${"```json"}
-${JSON.stringify(changeset, null, 2)}
+  return `${IDENTIFIER}
+Install the version from this pull request in your project with: 
+
+${"```"}
+npm i ${url}
 ${"```"}
 `
 }
