@@ -1,5 +1,11 @@
 # ch-test-infra
 
+## 1.1.1
+
+### Patch Changes
+
+- [#9](https://github.com/pomber/infra-test/pull/9) [`d38db45`](https://github.com/pomber/infra-test/commit/d38db45b9de14e562c7a1119011b215b9587850a) Thanks [@pomber](https://github.com/pomber)! - Update package.json
+
 ## 1.1.0
 
 ### Minor Changes
