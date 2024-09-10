@@ -40,3 +40,7 @@ export async function setupUser() {
     `machine github.com\nlogin github-actions[bot]\npassword ${process.env.GITHUB_TOKEN}`,
   )
 }
+
+export async function pushTags() {
+  await exec("git", ["push", "origin", "--tags"])
+}

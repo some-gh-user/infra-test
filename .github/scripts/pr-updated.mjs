@@ -1,6 +1,7 @@
 import { Octokit } from "@octokit/action"
 import { humanId } from "human-id"
 import fs from "fs"
+import { IDENTIFIER } from "./params.mjs"
 
 // Get the required environment variables (PR number and GitHub token)
 const prNumber = process.argv[2]
@@ -10,8 +11,6 @@ const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/")
 const packageName = "ch-test-infra"
 
 const octokit = new Octokit({})
-
-const IDENTIFIER = "<!-- CH_ACTION -->"
 
 // find all comments
 console.log("listing comments")
