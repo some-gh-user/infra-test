@@ -47,6 +47,7 @@ const changelog = await fs.promises.readFile(
   `${PACKAGE_DIR}/CHANGELOG.md`,
   "utf8",
 )
+const canary = JSON.parse(await fs.promises.readFile("canary.json", "utf8"))
 
 console.log("Committing changes")
 await commitAll(`Version ${pkg.version}`)
@@ -64,16 +65,34 @@ console.log("Existing PRs", prs)
 
 const entry = getChangelogEntry(changelog, pkg.version)
 const title = `Release ${pkg.name}@${pkg.version}`
-const body = entry.content
+const canaryUrl = canary.packages[0].url
+const body = `${entry.content}
+
+---
+
+You can try ${
+  "`" + PACKAGE_NAME + "@" + pkg.version + "`"
+} in your project before it's released with:
+
+${"```"}
+npm i ${canaryUrl}
+${"```"}
+`
 
 if (prs.length === 0) {
   console.log("Creating new release PR")
-  await octokit.rest.pulls.create({
+  const { data: pr } = await octokit.rest.pulls.create({
     ...github.context.repo,
     base: BASE_BRANCH,
     head: RELEASE_BRANCH,
     title,
     body,
+  })
+  console.log("Adding `release` label")
+  await octokit.rest.issues.addLabels({
+    ...github.context.repo,
+    issue_number: pr.number,
+    labels: ["release"],
   })
 } else {
   console.log("Updating existing release PR")

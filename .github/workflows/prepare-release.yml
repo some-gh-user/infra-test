@@ -34,6 +34,10 @@ jobs:
 
       - run: pnpm install
 
+      - run: pnpm build
+
+      - run: pnpm canary
+
       - name: Create release PR
         run: node .github/scripts/prepare-release.mjs
         env:
