@@ -1,6 +1,12 @@
 import { exec } from "@actions/exec"
 import readChangesets from "@changesets/read"
-import { checkout, commitAll, forcePush, resetBranch } from "./git-utils.mjs"
+import {
+  checkout,
+  commitAll,
+  forcePush,
+  resetBranch,
+  setupUser,
+} from "./git-utils.mjs"
 import fs from "fs"
 import { getChangelogEntry } from "./md-utils.mjs"
 import { Octokit } from "@octokit/action"
@@ -21,6 +27,9 @@ if (changesets.length === 0) {
   console.log("No changesets found")
   process.exit(0)
 }
+
+console.log("Setting up user")
+await setupUser()
 
 console.log("Checking out release branch")
 await checkout(RELEASE_BRANCH)

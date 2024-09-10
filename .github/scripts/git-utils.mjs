@@ -26,3 +26,12 @@ export async function commitAll(message) {
 export async function forcePush(branch) {
   await exec("git", ["push", "origin", `HEAD:${branch}`, "--force"])
 }
+
+export async function setupUser() {
+  await exec("git", ["config", "user.name", `"github-actions[bot]"`])
+  await exec("git", [
+    "config",
+    "user.email",
+    `"github-actions[bot]@users.noreply.github.com"`,
+  ])
+}
