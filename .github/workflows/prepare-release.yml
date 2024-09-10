@@ -33,7 +33,12 @@ jobs:
 
       - run: pnpm install
 
-      # run version-packages
       - run: pnpm version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release PR
+        run: node .github/scripts/prepare-release.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}

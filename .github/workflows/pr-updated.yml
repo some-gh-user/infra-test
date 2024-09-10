@@ -11,9 +11,6 @@ concurrency:
 
 jobs:
   pr-canary:
-    if: >
-      contains(github.event.pull_request.labels.*.name, 'release') == false
-
     runs-on: ubuntu-latest
 
     permissions:

@@ -1,9 +1,11 @@
 ## pr-updated
 
-For every new commit in a PR to `next` (that isn't tagged with `release`):
+For every new commit in a PR to `next`:
 
 ```
 - build and test package
+- if is release PR
+  - show it with pkg.pr.new
 - if no new changeset
   - comment with a link to add a changeset
 - if new changeset
