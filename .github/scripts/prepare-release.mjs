@@ -44,7 +44,7 @@ const pkg = JSON.parse(
   await fs.promises.readFile(`${PACKAGE_DIR}/package.json`, "utf8"),
 )
 const changelog = await fs.promises.readFile(
-  `${PACKAGE_DIR}/changelog.md`,
+  `${PACKAGE_DIR}/CHANGELOG.md`,
   "utf8",
 )
 

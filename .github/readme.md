@@ -1,3 +1,12 @@
+First:
+
+- fill the right values in `.github/scripts/constants.mjs`
+- enable PR creation for Actions
+  - go to https://github.com/organizations/YOUR_ORG/settings/actions and check Allow GitHub Actions to create and approve pull requests
+  - then go to https://github.com/YOUR_ORG/YOUR_REPO/settings/actions and check the box that previously was grayed out
+
+---
+
 ## pr-updated
 
 For every new commit in a PR to `next`:
