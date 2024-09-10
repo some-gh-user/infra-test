@@ -1,7 +1,7 @@
 import fs from "fs"
 import { exec, getExecOutput } from "@actions/exec"
 import { pushTags } from "./git-utils.mjs"
-import { PACKAGE_DIR, PUBLISH_COMMAND } from "./params.mjs"
+import { IDENTIFIER, PACKAGE_DIR, PUBLISH_COMMAND } from "./params.mjs"
 import github from "@actions/github"
 import { getChangelogEntry } from "./md-utils.mjs"
 import { Octokit } from "@octokit/action"
