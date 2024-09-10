@@ -3,6 +3,7 @@ import { exec, getExecOutput } from "@actions/exec"
 import { pushTags } from "./git-utils.mjs"
 import { PACKAGE_DIR, PUBLISH_COMMAND } from "./params.mjs"
 import github from "@actions/github"
+import { getChangelogEntry } from "./md-utils.mjs"
 
 const cwd = process.cwd()
 
