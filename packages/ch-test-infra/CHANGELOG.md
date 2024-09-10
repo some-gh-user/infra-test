@@ -1,5 +1,11 @@
 # ch-test-infra
 
+## 1.1.4
+
+### Patch Changes
+
+- [#15](https://github.com/pomber/infra-test/pull/15) [`4d4cfd3`](https://github.com/pomber/infra-test/commit/4d4cfd396e038b6ff6dd81b59c06fac852ad0d2c) Thanks [@pomber](https://github.com/pomber)! - Update readme.md 2
+
 ## 1.1.3
 
 ### Patch Changes
