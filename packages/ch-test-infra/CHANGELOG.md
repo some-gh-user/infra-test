@@ -1,5 +1,11 @@
 # ch-test-infra
 
+## 1.1.5
+
+### Patch Changes
+
+- [#17](https://github.com/pomber/infra-test/pull/17) [`603e546`](https://github.com/pomber/infra-test/commit/603e5467b73e2aa22e32151fb23ce1fb02657daa) Thanks [@pomber](https://github.com/pomber)! - Abc
+
 ## 1.1.4
 
 ### Patch Changes
