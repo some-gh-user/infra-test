@@ -4,8 +4,10 @@ import { pushTags } from "./git-utils.mjs"
 import { PACKAGE_DIR, PUBLISH_COMMAND } from "./params.mjs"
 import github from "@actions/github"
 import { getChangelogEntry } from "./md-utils.mjs"
+import { Octokit } from "@octokit/action"
 
 const cwd = process.cwd()
+const octokit = new Octokit({})
 
 console.log("Writing .npmrc")
 await fs.promises.writeFile(
