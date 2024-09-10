@@ -1,5 +1,6 @@
 import { exec, getExecOutput } from "@actions/exec"
 import github from "@actions/github"
+import fs from "fs"
 
 export async function checkout(branch) {
   let { stderr } = await getExecOutput("git", ["checkout", branch], {
@@ -34,4 +35,8 @@ export async function setupUser() {
     "user.email",
     `"github-actions[bot]@users.noreply.github.com"`,
   ])
+  await fs.promises.writeFile(
+    `${process.env.HOME}/.netrc`,
+    `machine github.com\nlogin github-actions[bot]\npassword ${process.env.GITHUB_TOKEN}`,
+  )
 }
