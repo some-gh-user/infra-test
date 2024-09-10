@@ -19,7 +19,7 @@ if (output.exitCode !== 0) {
   console.error(output.stderr)
   process.exit(1)
 }
-const published = !output.includes("No unpublished projects to publish")
+const published = !output.stdout.includes("No unpublished projects to publish")
 console.log(`Published: ${published}`)
 
 console.log("Pushing tags")
