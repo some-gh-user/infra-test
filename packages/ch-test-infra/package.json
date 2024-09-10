@@ -10,7 +10,6 @@
   "bugs": {
     "url": "https://github.com/code-hike/codehike/issues"
   },
-  "author": "Rodrigo Pombo",
   "type": "module",
   "sideEffects": false,
   "license": "MIT",
