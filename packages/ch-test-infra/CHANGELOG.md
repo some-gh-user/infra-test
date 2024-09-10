@@ -1,5 +1,11 @@
 # ch-test-infra
 
+## 1.1.2
+
+### Patch Changes
+
+- [#11](https://github.com/pomber/infra-test/pull/11) [`7a0cc40`](https://github.com/pomber/infra-test/commit/7a0cc4050c556bb69f6b258a123290daa6c9c6c9) Thanks [@pomber](https://github.com/pomber)! - Update readme.md
+
 ## 1.1.1
 
 ### Patch Changes
