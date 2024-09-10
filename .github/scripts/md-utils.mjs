@@ -22,7 +22,7 @@ export function getChangelogEntry(changelog, version) {
   for (let i = 0; i < nodes.length; i++) {
     let node = nodes[i]
     if (node.type === "heading") {
-      let stringified = mdastToString(node)
+      let stringified = mdastToString.toString(node)
       let match = stringified.toLowerCase().match(/(major|minor|patch)/)
       if (match !== null) {
         let level = BumpLevels[match[0]]
