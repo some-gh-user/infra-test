@@ -64,7 +64,7 @@ const { data: prs } = await octokit.pulls.list({
 console.log("Existing PRs", prs)
 
 const entry = getChangelogEntry(changelog, pkg.version)
-const title = `Release ${pkg.name}@${pkg.version}`
+const title = `🚀 Release ${"`" + pkg.name}@${pkg.version + "`"} 🚀`
 const canaryUrl = canary.packages[0].url
 const body = `${entry.content}
 

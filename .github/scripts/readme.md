@@ -14,50 +14,51 @@ First:
 For every new commit in a PR to `next`:
 
 ```
-- build and test package
-- if is release PR
-  - show it with pkg.pr.new
+- build package
 - if no new changeset
-  - comment with a link to add a changeset
+  - (update) comment with a link to add a changeset in the PR
 - if new changeset
-  - add `changeset` label
-  - show it with pkg.pr.new
+  - add `changeset` label to the PR
+  - (update) comment with the canary install in the PR
 ```
 
 ## pr-merged
 
-For every merged PR to `next`:
+For every merged PR to `next` that contains the `changeset` label:
 
 ```
-- if has changesets
-  - go to fixed issues and add canary comment
+- find the issues closed by the PR
+- for every issue
+  - add a comment with the canary install
 ```
 
-## prepare-release
+## push-to-next
+
+For every push to `next`:
 
 ```
-for every push to `next`,
-  - run `pnpm version-packages`
-  - if no changes, skip
-  - if there's old release PR delete it
-  - create a new release PR
-    - title: `release: v${version}`
-    - body: changelog
-    - labels: `release`
+- build package
+- if no changes, skip
+- checkout and reset the `release` branch
+- run `pnpm version-packages`
+- push the `release` branch
+- create or update release PR
+  - body: changelog
+  - labels: `release`
 ```
 
-## release
+## release-pr-merged
 
-```
 for every `release` pr merged to `next`:
-  - run build and  `pnpm release`
-  - push tags
-  - github release
-  - update comments in fixed issues
-    - find all `changeset` PRs
-    - find related issues
-    - update comments
-    - remove `changeset` label
+
+```
+- run build and  `pnpm release`
+- push tags
+- create github release
+- find all `changeset` PRs
+  - find related issues
+    - add comments in fixed issues
+  - remove `changeset` label
 ```
 
 ## sponsors

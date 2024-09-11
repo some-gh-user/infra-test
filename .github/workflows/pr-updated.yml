@@ -10,7 +10,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  pr-canary:
+  comment-pr:
+    name: Comment PR
     runs-on: ubuntu-latest
 
     permissions:

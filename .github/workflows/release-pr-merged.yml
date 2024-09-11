@@ -1,19 +1,21 @@
-name: Prepare Release
+name: Release PR Merged
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - next
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }} # Ensures concurrency is handled per branch
-  cancel-in-progress: true # Cancels any in-progress workflows if a new one is triggered
-
 jobs:
-  prepare:
+  release:
+    name: Release
+    if: >
+      github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
+
     runs-on: ubuntu-latest
 
     permissions:
+      issues: write
       pull-requests: write
       contents: write
 
@@ -36,10 +38,8 @@ jobs:
 
       - run: pnpm build
 
-      - run: pnpm canary
-
-      - name: Create release PR
-        run: node .github/scripts/prepare-release.mjs
+      - name: Release and update issues comments
+        run: node .github/scripts/release.mjs
         env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
