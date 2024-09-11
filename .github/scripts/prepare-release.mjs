@@ -50,7 +50,7 @@ const changelog = await fs.promises.readFile(
 const canary = JSON.parse(await fs.promises.readFile("canary.json", "utf8"))
 
 console.log("Committing changes")
-await commitAll(`Version ${pkg.version}`)
+await commitAll(`${PACKAGE_NAME}@${pkg.version}`)
 console.log("Pushing changes")
 await forcePush(RELEASE_BRANCH)
 
