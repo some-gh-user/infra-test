@@ -1,5 +1,15 @@
 # ch-test-infra
 
+## 1.1.6
+
+### Patch Changes
+
+- [#23](https://github.com/pomber/infra-test/pull/23) [`33162e9`](https://github.com/pomber/infra-test/commit/33162e9959d06c7662a98c256b41605182de8e84) Thanks [@pomber](https://github.com/pomber)! - Update readme.md 123
+
+- [#22](https://github.com/pomber/infra-test/pull/22) [`7e1f25b`](https://github.com/pomber/infra-test/commit/7e1f25b3be987a9849e746b6a66fd898ef6c23c9) Thanks [@pomber](https://github.com/pomber)! - New md method.
+
+  more stuff
+
 ## 1.1.5
 
 ### Patch Changes
