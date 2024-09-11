@@ -36,7 +36,6 @@ jobs:
       - run: pnpm install
 
       - name: Add comment to issues
-        run: node .github/scripts/pr-merged.mjs ${{ github.event.pull_request.number }}
+        run: node .github/scripts/pr-merged.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
