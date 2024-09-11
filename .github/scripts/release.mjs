@@ -71,30 +71,19 @@ const issueNumbers = repository.pullRequests.edges.flatMap(({ node }) =>
   node.closingIssuesReferences.nodes.map(({ number }) => number),
 )
 
-console.log("Updating issues", issueNumbers)
+console.log("Cmmenting issues", issueNumbers)
 await Promise.all(
   issueNumbers.map(async (number) => {
-    const { data: comments } = await octokit.issues.listComments({
+    const commentBody = `🚀 Released in ${"`" + tag + "`"} 🚀
+
+If this was helpful, consider **[sponsoring Code Hike](https://github.com/sponsors/code-hike?metadata_source=Issue)**. Your contribution helps sustain open-source work.
+
+Thanks for using Code Hike!`
+
+    await octokit.issues.createComment({
       ...github.context.repo,
       issue_number: number,
-    })
-    const comment = comments.find((comment) =>
-      comment.body.startsWith(IDENTIFIER),
-    )
-    if (!comment) {
-      console.warn(`No comment found for issue ${number}`)
-      return
-    }
-
-    const newBody = `${IDENTIFIER}
-Released in ${tag} 🚀
-
-Thanks for using Code Hike! **[Become a sponsor](https://github.com/sponsors/code-hike?metadata_source=Issue)** and help us keep the project going.`
-
-    await octokit.issues.updateComment({
-      ...github.context.repo,
-      comment_id: comment.id,
-      body: newBody,
+      body: commentBody,
     })
   }),
 )
