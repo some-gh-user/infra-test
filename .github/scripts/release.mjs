@@ -89,7 +89,6 @@ Thanks for using Code Hike!`
 )
 
 console.log("Updating PRs", prNumbers)
-// remove `changeset` tag from PRs
 await Promise.all(
   prNumbers.map(async (number) => {
     await octokit.issues.removeLabel({

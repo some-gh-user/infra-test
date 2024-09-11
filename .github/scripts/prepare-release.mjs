@@ -11,14 +11,15 @@ import fs from "fs"
 import { getChangelogEntry } from "./md-utils.mjs"
 import { Octokit } from "@octokit/action"
 import github from "@actions/github"
+import {
+  BASE_BRANCH,
+  PACKAGE_DIR,
+  PACKAGE_NAME,
+  RELEASE_BRANCH,
+  VERSION_COMMAND,
+} from "./params.mjs"
 
-const VERSION_COMMAND = "pnpm version-packages"
-const RELEASE_BRANCH = "release"
-const BASE_BRANCH = "next"
-const PACKAGE_NAME = "ch-test-infra"
-const PACKAGE_DIR = `packages/${PACKAGE_NAME}`
 const cwd = process.cwd()
-
 const octokit = new Octokit({})
 
 console.log("Reading changesets")

@@ -43,4 +43,3 @@ jobs:
         run: node .github/scripts/prepare-release.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
