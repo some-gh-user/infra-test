@@ -46,9 +46,9 @@ await octokit.rest.repos.createRelease({
 })
 
 console.log("Getting all released issues")
-const query = `query ($repoOwner: String!, $repoName: String!) {
-  repository(owner: $repoOwner, name: $repoName) {
-    pullRequests(first: 100, labels: ["changeset"]) {
+const query = `query ($owner: String!, $repo: String!) {
+  repository(owner: $owner, name: $repo) {
+    pullRequests(first: 100, labels: ["changeset"], states: MERGED) {
       edges {
         node {
           number
@@ -62,16 +62,13 @@ const query = `query ($repoOwner: String!, $repoName: String!) {
     }
   }
 }`
-const { repository } = await octokit.graphql(query, {
-  repoOwner: github.context.repo.owner,
-  repoName: github.context.repo.repo,
-})
+const { repository } = await octokit.graphql(query, github.context.repo)
 const prNumbers = repository.pullRequests.edges.map(({ node }) => node.number)
 const issueNumbers = repository.pullRequests.edges.flatMap(({ node }) =>
   node.closingIssuesReferences.nodes.map(({ number }) => number),
 )
 
-console.log("Cmmenting issues", issueNumbers)
+console.log("Commenting issues", issueNumbers)
 await Promise.all(
   issueNumbers.map(async (number) => {
     const commentBody = `🚀 Released in ${"`" + tag + "`"} 🚀
