@@ -48,7 +48,7 @@ For every push to `next`:
 ```
 
 ```
-- update or create a PR from 'next' to 'main'
+- create a PR from 'next' to 'main' if it doesn't exist
   - title: Update website
 ```
 
