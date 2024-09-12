@@ -26,12 +26,12 @@ if (prs.length === 0) {
     body,
   })
 } else {
-  console.log("Updating existing PR")
-  const { number } = prs[0]
-  await octokit.rest.pulls.update({
-    ...github.context.repo,
-    pull_number: number,
-    title,
-    body,
-  })
+  // console.log("Updating existing PR")
+  // const { number } = prs[0]
+  // await octokit.rest.pulls.update({
+  //   ...github.context.repo,
+  //   pull_number: number,
+  //   title,
+  //   body,
+  // })
 }
