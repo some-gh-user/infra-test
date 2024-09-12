@@ -43,3 +43,16 @@ jobs:
         run: node .github/scripts/prepare-release.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  website-pr:
+    name: Update website PR
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Create or update website PR
+        run: node .github/scripts/website-pr.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

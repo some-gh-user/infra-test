@@ -47,6 +47,11 @@ For every push to `next`:
   - labels: `release`
 ```
 
+```
+- update or create a PR from 'next' to 'main'
+  - title: Update website
+```
+
 ## release-pr-merged
 
 for every `release` pr merged to `next`:
