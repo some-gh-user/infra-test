@@ -8,7 +8,7 @@ const octokit = new Octokit({})
 const prNumber = github.context.payload.pull_request.number
 
 // console log readme.md contents
-const readme = await fs.promises.readFile("README.md", "utf8")
+const readme = await fs.promises.readFile("readme.md", "utf8")
 console.log({ readme })
 
 async function createOrUpdateComment(prevComment, prNumber, body) {
